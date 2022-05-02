@@ -1,4 +1,3 @@
-from datetime import time
 import logging
 import os
 import time
@@ -36,7 +35,7 @@ logger.addHandler(handler)
 
 
 def send_message(bot, message):
-    """Отправка сообщений в чат"""
+    """Отправка сообщений в чат."""
     try:
         bot.send_message(chat_id=TELEGRAM_CHAT_ID, text=message)
         logger.info('Сообщение в чат отправлено')
@@ -45,7 +44,7 @@ def send_message(bot, message):
 
 
 def get_api_answer(current_timestamp):
-    """Запрос к эндпоинту API-сервиса"""
+    """Запрос к эндпоинту API-сервиса."""
     timestamp = current_timestamp
     params = {'from_date': timestamp}
     try:
@@ -60,7 +59,7 @@ def get_api_answer(current_timestamp):
 
 
 def check_response(response):
-    """Проверка корректности ответа API"""
+    """Проверка корректности ответа API."""
     try:
         homework_list = response['homeworks']
     except KeyError as e:
@@ -83,7 +82,7 @@ def check_response(response):
 
 
 def parse_status(homework):
-    """Получение информации о домашней работе и ее статус"""
+    """Получение информации о домашней работе и ее статус."""
     try:
         homework_name = homework.get('homework_name')
     except KeyError as e:
@@ -104,6 +103,7 @@ def parse_status(homework):
 
 
 def check_tokens():
+    """Проверка наличия токенов."""
     return all([TELEGRAM_TOKEN, TELEGRAM_CHAT_ID, PRACTICUM_TOKEN])
 
 
